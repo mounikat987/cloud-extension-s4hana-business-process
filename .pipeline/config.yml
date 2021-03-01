@@ -35,6 +35,15 @@ stages:
       - 535
       - 1300
 
+  productionDeployment:
+    cfTargets:
+     - org: 'EngSrvVal-E2E_missionS4'
+       space: 'dev'
+       apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
+       appName: 'myAppName'
+       manifest: 'manifest.yml'
+       credentialsId: 'global'
+
 lint:
 ui5BestPractices:
   failThreshold:
@@ -47,11 +56,3 @@ ui5BestPractices:
 #      - alias: 'mySystemAlias'
 #        credentialId: 'mySystemCredentialsId'
 
-productionDeployment:
-  cfTargets:
-    - org: 'EngSrvVal-E2E_missionS4'
-      space: 'dev'
-      apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
-      appName: 'myAppName'
-      manifest: 'manifest.yml'
-      credentialsId: 'global'
