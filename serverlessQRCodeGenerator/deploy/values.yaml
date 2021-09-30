@@ -1,0 +1,33 @@
+service-values:
+  em-srv:
+    type: enterprise-messaging
+    instance: 408f5430-cbb5-4472-b932-7065c3d345e8
+    key: my-BusinessPartnerValidation-em-key
+  destination-srv:
+    type: destination
+    instance: 4075510c-5293-4bee-9a64-864f7be49268
+    key: my-BusinessPartnerValidation-dest-key
+secret-values:
+  destination-name:
+    name:
+      name: RegisteredoData
+      attachmentSrvApi: API_CV_ATTACHMENT_SRV
+      businessPartnerSrvApi: API_BUSINESS_PARTNER
+      businessObjectTypeName: BUS1006
+config-values:
+  amqp-service-config:
+    amqp:
+      incoming:
+        inp1:
+          sourceAddress: queue:refapps/bpems/abc/serverlessQueue
+          sndSettleMode: 0
+          rcvSettleMode: 0
+          maxLinkCredit: 50
+    bind:
+      rules:
+        - filter:
+            incoming: inp1
+          action:
+            function: qrcodegenerator
+            failure: accept
+            content: application/json
